@@ -677,12 +677,33 @@
                 <div class="bg-white w-full max-w-4xl max-h-[85vh] p-8 rounded-2xl shadow-2xl relative flex flex-col">
                     <button onclick="document.getElementById('modal-zoom-division-docs').classList.add('hidden')"
                         class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 transition text-2xl">×</button>
-                    <div class="mb-6 border-b border-slate-100 pb-4">
-                        <div
-                            class="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold mb-2">
-                            DOCUMENTOS TOP 1%</div>
-                        <h3 id="modal-docs-title" class="text-2xl font-serif text-slate-900">División</h3>
-                        <p id="modal-docs-subtitle" class="text-sm text-slate-500 mt-1">Lista de documentos</p>
+                    <div class="mb-6 border-b border-slate-100 pb-4 flex justify-between items-start">
+                        <div>
+                            <div
+                                class="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold mb-2">
+                                DOCUMENTOS TOP 1%</div>
+                            <h3 id="modal-docs-title" class="text-2xl font-serif text-slate-900">División</h3>
+                            <p id="modal-docs-subtitle" class="text-sm text-slate-500 mt-1">Lista de documentos</p>
+                        </div>
+                        <!-- Leyenda de períodos -->
+                        <div class="flex gap-3 items-center">
+                            <div class="px-3 py-2 rounded-lg text-center" style="background-color: rgba(16, 185, 129, 0.2); min-width: 80px;">
+                                <div class="text-xs font-bold text-slate-900">Novedades</div>
+                                <div class="text-xs text-slate-700">2024-2025</div>
+                            </div>
+                            <div class="px-3 py-2 rounded-lg text-center" style="background-color: rgba(59, 130, 246, 0.2); min-width: 80px;">
+                                <div class="text-xs font-bold text-slate-900">Recientes</div>
+                                <div class="text-xs text-slate-700">2020-2023</div>
+                            </div>
+                            <div class="px-3 py-2 rounded-lg text-center" style="background-color: rgba(245, 158, 11, 0.2); min-width: 80px;">
+                                <div class="text-xs font-bold text-slate-900">Consolidado</div>
+                                <div class="text-xs text-slate-700">2015-2019</div>
+                            </div>
+                            <div class="px-3 py-2 rounded-lg text-center" style="background-color: rgba(139, 92, 246, 0.2); min-width: 80px;">
+                                <div class="text-xs font-bold text-slate-900">Legado</div>
+                                <div class="text-xs text-slate-700">&lt;2015</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="overflow-y-auto pr-2 flex-grow custom-scrollbar">
                         <ul id="modal-docs-list" class="space-y-3">
@@ -1933,7 +1954,7 @@
             { "division": "RECURSOS NATURALES", "total_docs": 30, "total_downloads": 762967, "promedio": 25432 },
             { "division": "DESARROLLO PRODUCTIVO", "total_docs": 40, "total_downloads": 724059, "promedio": 18101 },
             { "division": "POBLACIÓN Y DESARROLLO", "total_docs": 37, "total_downloads": 708853, "promedio": 19158 },
-            { "division": "ASENTAMIENTOS HUMANOS", "total_docs": 31, "total_downloads": 613295, "promedio": 19784 },
+            { "division": "DESARROLLO SOSTENIBLE", "total_docs": 31, "total_downloads": 613295, "promedio": 19784 },
             { "division": "MÉXICO", "total_docs": 32, "total_downloads": 543131, "promedio": 16973 },
             { "division": "REVISTA CEPAL", "total_docs": 25, "total_downloads": 441515, "promedio": 17661 },
             { "division": "COMERCIO INTERNACIONAL", "total_docs": 27, "total_downloads": 366575, "promedio": 13577 },
@@ -2001,7 +2022,7 @@
                 let lookupDivision = division;
                 if (division === 'DESARROLLO PRODUCTIVO') lookupDivision = 'DESARROLLO PRODUCTIVO Y EMPRESARIAL';
                 else if (division === 'COMERCIO INTERNACIONAL') lookupDivision = 'COMERCIO INTERNACIONAL E INTEGRACIÓN';
-                else if (division === 'ASENTAMIENTOS HUMANOS') lookupDivision = 'DESARROLLO SOSTENIBLE Y ASENTAMIENTOS HUMANOS';
+                else if (division === 'DESARROLLO SOSTENIBLE') lookupDivision = 'DESARROLLO SOSTENIBLE Y ASENTAMIENTOS HUMANOS';
 
                 const docsList = divDocsData[lookupDivision] || [];
                 document.getElementById('modal-docs-title').innerText = division;
