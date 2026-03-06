@@ -449,25 +449,25 @@ function renderIcebergChart() {
             name: 'Nivel 1: Visibilidad Inicial',
             desc: '<b>Métrica de Volumen:</b> El primer punto de contacto. Indica interés, no necesariamente uso estratégico ni impacto institucional.',
             color: '#bfdbfe', // Lightest Blue
-            coords: [[29, 15], [22, 36], [36, 36]] // User Aligned
+            coords: [[28, 19], [21.5, 37], [35, 37]] // Adjusted for compressed image
         },
         {
             name: 'Nivel 2: Eco Mediático',
             desc: '<b>Presencia en el debate público:</b> Agregadores de noticias y monitoreo de redes. Quiénes abordan nuestros temas y con qué frecuencia.',
             color: '#60a5fa', // Soft Blue
-            coords: [[22, 36], [36, 36], [40, 57], [17, 57]] // User Aligned
+            coords: [[21.5, 37], [35, 37], [39.5, 56], [15.5, 56]] // Adjusted for compressed image
         },
         {
             name: 'Nivel 3: Referencia Técnica y Citas',
             desc: '<b>Validación de Prestigio:</b> Uso en academia, gobiernos y ONGs. El conocimiento es referenciado como base técnica para otros trabajos.',
             color: '#2563eb', // Vivid Blue
-            coords: [[40, 57], [17, 57], [12, 77], [45, 77]] // User Aligned
+            coords: [[39.5, 56], [15.5, 56], [10.5, 73.5], [44.5, 73.5]] // Adjusted for compressed image
         },
         {
-            name: 'Nivel 4: Apropiación y Transformación',
+            name: 'Nivel 4: Apropiación y Transfo   rmación',
             desc: '<b>Impacto Real:</b> El conocimiento se convierte en acción. Adopción en marcos legales, proyectos de ley y propuestas de política pública.',
             color: '#1e3a8a', // Deep Blue
-            coords: [[12, 77], [45, 77], [51, 97], [7, 97]] // User Aligned
+            coords: [[10.5, 73.5], [44.5, 73.5], [51, 92], [5, 92]] // Adjusted for compressed image
         }
     ];
 
