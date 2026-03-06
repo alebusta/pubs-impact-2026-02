@@ -63,6 +63,19 @@
             border-radius: 4px;
             font-size: 14px;
         }
+
+        html.modal-open,
+        body.modal-open {
+            overflow: hidden !important;
+            overscroll-behavior: none;
+        }
+
+        body.modal-open {
+            position: fixed;
+            width: 100%;
+            left: 0;
+            right: 0;
+        }
     </style>
 </head>
 
@@ -114,25 +127,25 @@
         <div id="chartIceberg" class="absolute inset-0 z-10"></div>
 
         <!-- 3. Minimalist Strategic Text Overlay (Right Side) -->
-        <div class="absolute top-12 right-12 z-20 max-w-xl pointer-events-none">
-            <div class="bg-white p-12 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-slate-200">
+        <div class="absolute top-6 right-6 z-20 w-[38rem] lg:w-[41rem] max-w-[92vw] pointer-events-none">
+            <div class="bg-white p-6 md:p-7 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-slate-200">
                 <div
-                    class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6">
+                    class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-[10px] font-bold tracking-widest uppercase mb-3">
                     Mapeo de Impacto
                 </div>
 
-                <h2 class="text-5xl font-serif text-slate-800 leading-tight mb-6">
+                <h2 class="text-4xl md:text-[3.25rem] font-serif text-slate-800 leading-[1.05] mb-3">
                     De la Visibilidad <br />
                     <span class="text-blue-600">a la Transformación</span>
                 </h2>
 
-                <div class="space-y-6 text-slate-600 leading-relaxed">
-                    <p class="text-lg">
+                <div class="space-y-3 text-slate-600 leading-relaxed">
+                    <p class="text-base md:text-[1.06rem]">
                         En un contexto de retos a la relevancia regional, las descargas son solo la <strong
                             class="text-slate-900">punto de partida</strong>.
                     </p>
 
-                    <p class="text-base font-light">
+                    <p class="text-sm md:text-[0.95rem] font-light leading-relaxed">
                         Esta propuesta sistémica plantea medir el <strong
                             class="text-slate-800 font-medium">aprovechamiento y
                             uso</strong> de nuestro conocimiento más allá de las descargas, yendo desde el eco
@@ -218,7 +231,7 @@
                             </div>
                             <div>
                                 <h3 class="font-bold text-xl text-slate-900 mb-2">Análisis complementarios</h3>
-                                <p class="text-slate-600 text-lg">Eco mediático y citaciones</p>
+                                <p class="text-slate-600 text-lg">Eco mediático y citaciones (flagships)</p>
                             </div>
                         </div>
                     </div>
@@ -267,7 +280,7 @@
                             sobre<br>los Procesos</div>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed max-w-xs">Detección de nudos técnicos y
-                        oportunidades de coordinación para fortalecer la gestión digital.</p>
+                        oportunidades de coordinación para fortalecer la gestión del conocimiento.</p>
                 </div>
             </div>
 
@@ -1832,6 +1845,38 @@
                 el.style.inset = '0';
             }
         });
+
+        // Lock page scroll while any modal is open, and keep the current slide position.
+        const trackedModals = Array.from(document.querySelectorAll('div[id^="modal-"]'));
+        let lockedScrollY = 0;
+
+        const setModalScrollLock = (locked) => {
+            if (locked) {
+                if (document.body.classList.contains('modal-open')) return;
+                lockedScrollY = window.scrollY || window.pageYOffset || 0;
+                document.documentElement.classList.add('modal-open');
+                document.body.classList.add('modal-open');
+                document.body.style.top = `-${lockedScrollY}px`;
+                return;
+            }
+
+            if (!document.body.classList.contains('modal-open')) return;
+            document.documentElement.classList.remove('modal-open');
+            document.body.classList.remove('modal-open');
+            document.body.style.top = '';
+            window.scrollTo(0, lockedScrollY);
+        };
+
+        const syncModalScrollLock = () => {
+            const hasOpenModal = trackedModals.some(modal => !modal.classList.contains('hidden'));
+            setModalScrollLock(hasOpenModal);
+        };
+
+        const modalObserver = new MutationObserver(syncModalScrollLock);
+        trackedModals.forEach(modal => {
+            modalObserver.observe(modal, { attributes: true, attributeFilter: ['class'] });
+        });
+        syncModalScrollLock();
 
         // Intersection Observer for Nav Dots
         const sections = document.querySelectorAll('section');
